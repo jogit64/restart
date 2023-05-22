@@ -23,7 +23,7 @@ import PagerView from "react-native-pager-view";
 import CupertinoButtonPurple from "./components/CupertinoButtonPurple";
 import MaterialButtonViolet from "./components/MaterialButtonViolet";
 import MaterialButtonSuccess from "./components/MaterialButtonSuccess";
-import MaterialButtonSuccess1 from "./components/MaterialButtonSuccess1";
+import ButtonCroyances from "./components/ButtonCroyances";
 import MaterialButtonPurple from "./components/MaterialButtonPurple";
 
 import IoniconsIcon from "react-native-vector-icons/Ionicons";
@@ -35,10 +35,13 @@ export default function App() {
   //* ------------------------------------------------------------
   //* A CONSERVER GESTION SPLASHSCREEN ET FONTS
   //* ------------------------------------------------------------
+
   const [fontsLoaded] = useFonts({
-    Lemon: require("./assets/fonts/lemon-regular.ttf"),
-    Roboto: require("./assets/fonts/roboto-regular.ttf"),
+    // Lemon: require("./assets/fonts/lemon-regular.ttf"),
+    // Roboto: require("./assets/fonts/roboto-regular.ttf"),
     Roboto700: require("./assets/fonts/roboto-700.ttf"),
+    // "roboto-700": require("./path-to-fonts/Roboto-700.ttf"),
+    // "roboto-regular": require("./path-to-fonts/Roboto-Regular.ttf"),
   });
 
   useEffect(() => {
@@ -61,14 +64,15 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      {/* 2/3 of the screen */}
+      {/* 2/3 of the screen *********************************************************/}
+
       <View style={{ flex: 2 }}>
         <PagerView style={{ flex: 1 }} initialPage={0}>
           {/* Each child view of PagerView represents a page */}
           <View style={styles.page} key="1">
             <Text style={styles.pageTitle}>Page 1</Text>
             <Text style={styles.pageContent}>
-              Ceci est un exemple de contenu pour la première page.
+              Ceci est un exemple de contenu pour la pemière page.
             </Text>
           </View>
           <View style={styles.page} key="2">
@@ -78,21 +82,28 @@ export default function App() {
             </Text>
           </View>
           {/* Add more views as needed */}
+          <View style={styles.page} key="3">
+            <Text style={styles.pageTitle}>Page 3</Text>
+            <Text style={styles.pageContent}>
+              Ceci est un exemple de contenu pour la troisième page.
+            </Text>
+          </View>
         </PagerView>
       </View>
 
-      {/* 1/3 of the screen */}
+      {/* 1/3 of the screen *********************************************************/}
+
       <View style={{ flex: 1 }}>
         <StatusBar
           barStyle="light-content"
-          // backgroundColor="rgba(255,255,255,1)"
-          backgroundColor="red"
+          backgroundColor="rgba(111,120,189,1)"
         />
 
         <CupertinoButtonPurple
           caption="Créer un compte gratuit"
           style={styles.cupertinoButtonPurple}
         ></CupertinoButtonPurple>
+
         <MaterialButtonViolet
           style={styles.materialButtonViolet}
         ></MaterialButtonViolet>
@@ -100,16 +111,24 @@ export default function App() {
     </View>
   );
 }
+
+//-----------------------------------------------------------------
+// LES STYLES
+//-----------------------------------------------------------------
+
 const styles = StyleSheet.create({
+  //* Style du conteneur ------------------------------------------
   container: {
     flex: 1,
-    backgroundColor: "rgba(248,252,255,1)",
+    backgroundColor: "rgba(233,246,255,1)",
   },
+
+  //* Style du bas fixe 1/3 ---------------------------------------
   cupertinoButtonPurple: {
     height: 44,
     width: 312,
     borderRadius: 11,
-    marginTop: 10,
+    marginTop: 80,
     marginLeft: 24,
   },
   materialButtonViolet: {
