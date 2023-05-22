@@ -23,11 +23,14 @@ import * as SplashScreen from "expo-splash-screen";
 import PagerView from "react-native-pager-view";
 import Swiper from "react-native-swiper";
 
-import CupertinoButtonPurple from "./components/CupertinoButtonPurple";
-import MaterialButtonViolet from "./components/MaterialButtonViolet";
-import MaterialButtonSuccess from "./components/MaterialButtonSuccess";
-import ButtonCroyances from "./components/ButtonCroyances";
-import MaterialButtonPurple from "./components/MaterialButtonPurple";
+//import CupertinoButtonPurple from "./components/CupertinoButtonPurple";
+//import MaterialButtonViolet from "./components/MaterialButtonViolet";
+// import MaterialButtonSuccess from "./components/MaterialButtonSuccess";
+// import ButtonCroyances from "./components/ButtonCroyances";
+// import MaterialButtonPurple from "./components/MaterialButtonPurple";
+
+import MaterialButtonViolet1 from "./components/MaterialButtonViolet1";
+import MaterialButtonViolet3 from "./components/MaterialButtonViolet3";
 
 import IoniconsIcon from "react-native-vector-icons/Ionicons";
 
@@ -41,8 +44,8 @@ export default function App() {
 
   const [fontsLoaded] = useFonts({
     // Lemon: require("./assets/fonts/lemon-regular.ttf"),
-    // Roboto: require("./assets/fonts/roboto-regular.ttf"),
-    Roboto700: require("./assets/fonts/roboto-700.ttf"),
+    roboto: require("./assets/fonts/roboto-regular.ttf"),
+    // roboto700: require("./assets/fonts/roboto-700.ttf"),
     // "roboto-700": require("./path-to-fonts/Roboto-700.ttf"),
     // "roboto-regular": require("./path-to-fonts/Roboto-Regular.ttf"),
   });
@@ -127,14 +130,12 @@ export default function App() {
           backgroundColor="rgba(111,120,189,1)"
         />
 
-        <CupertinoButtonPurple
-          caption="Créer un compte gratuit"
-          style={styles.cupertinoButtonPurple}
-        ></CupertinoButtonPurple>
-
-        <MaterialButtonViolet
-          style={styles.materialButtonViolet}
-        ></MaterialButtonViolet>
+        <MaterialButtonViolet1
+          style={styles.materialButtonViolet1}
+        ></MaterialButtonViolet1>
+        <MaterialButtonViolet3
+          style={styles.materialButtonViolet3}
+        ></MaterialButtonViolet3>
       </View>
     </View>
   );
@@ -154,18 +155,27 @@ const styles = StyleSheet.create({
   //* Style du haut slide 2/3 -------------------------------------
 
   //* Style du bas fixe 1/3 ---------------------------------------
-  cupertinoButtonPurple: {
-    height: 44,
+  materialButtonViolet1: {
+    height: 55,
     width: 312,
+    backgroundColor: "rgba(111,120,189,1)",
+    //shadowColor: "rgba(0,0,0,1)",
+    // shadowOffset: {
+    //   width: 3,
+    //   height: 3,
+    // },
+    //elevation: 5,
+    // shadowOpacity: 0.01,
+    // shadowRadius: 0,
     borderRadius: 11,
-    marginTop: 80,
-    marginLeft: 24,
+    marginTop: 40,
+    alignSelf: "center",
   },
-  materialButtonViolet: {
-    height: 44,
+  materialButtonViolet3: {
+    height: 55,
     width: 312,
-    backgroundColor: "#fff",
-    borderRadius: 11,
+    backgroundColor: "rgba(255,255,255,1)",
+    //shadowColor: "rgba(225,228,235,1)",
     shadowColor: "#000",
     shadowOffset: {
       width: 3,
@@ -174,14 +184,16 @@ const styles = StyleSheet.create({
     elevation: 5,
     shadowOpacity: 1,
     shadowRadius: 0,
-    marginTop: 22,
-    marginBottom: 50,
-    marginLeft: 24,
+    borderRadius: 11,
+    marginTop: 21,
+    alignSelf: "center",
   },
+
   page: {
     justifyContent: "center",
     alignItems: "center",
     padding: 20,
+    height: "100%",
   },
   pageTitle: {
     fontSize: 24,
