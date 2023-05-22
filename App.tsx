@@ -19,6 +19,7 @@ import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 
 import PagerView from "react-native-pager-view";
+import Swiper from "react-native-swiper";
 
 import CupertinoButtonPurple from "./components/CupertinoButtonPurple";
 import MaterialButtonViolet from "./components/MaterialButtonViolet";
@@ -67,12 +68,12 @@ export default function App() {
       {/* 2/3 of the screen *********************************************************/}
 
       <View style={{ flex: 2 }}>
-        <PagerView style={{ flex: 1 }} initialPage={0}>
-          {/* Each child view of PagerView represents a page */}
+        <Swiper showsButtons={false} showsPagination={true}>
+          {/* Each child view of Swiper represents a page */}
           <View style={styles.page} key="1">
             <Text style={styles.pageTitle}>Page 1</Text>
             <Text style={styles.pageContent}>
-              Ceci est un exemple de contenu pour la pemière page.
+              Ceci est un exemple de contenu pour la première page.
             </Text>
           </View>
           <View style={styles.page} key="2">
@@ -88,7 +89,7 @@ export default function App() {
               Ceci est un exemple de contenu pour la troisième page.
             </Text>
           </View>
-        </PagerView>
+        </Swiper>
       </View>
 
       {/* 1/3 of the screen *********************************************************/}
@@ -121,6 +122,30 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "rgba(233,246,255,1)",
+  },
+
+  //* Style du haut slide 2/3 -------------------------------------
+
+  //* Style des dots ----------------------------------------------
+
+  dots: {
+    height: 10,
+    margin: 10,
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "row",
+  },
+  dot: {
+    width: 10,
+    height: 10,
+    borderRadius: 5,
+    margin: 5,
+  },
+  activeDot: {
+    backgroundColor: "blue",
+  },
+  inactiveDot: {
+    backgroundColor: "gray",
   },
 
   //* Style du bas fixe 1/3 ---------------------------------------
