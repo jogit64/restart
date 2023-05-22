@@ -68,7 +68,13 @@ export default function App() {
       {/* 2/3 of the screen *********************************************************/}
 
       <View style={{ flex: 2 }}>
-        <Swiper showsButtons={false} showsPagination={true}>
+        <Swiper
+          showsButtons={false}
+          showsPagination={true}
+          dotColor="#dcdeeb"
+          activeDotColor="#6f78bd"
+          loop={false}
+        >
           {/* Each child view of Swiper represents a page */}
           <View style={styles.page} key="1">
             <Text style={styles.pageTitle}>Page 1</Text>
