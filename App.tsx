@@ -12,6 +12,8 @@ import {
   Dimensions,
 } from "react-native";
 
+import { LinearGradient } from "expo-linear-gradient";
+
 import Svg, { Ellipse } from "react-native-svg";
 
 import { useFonts } from "expo-font";
@@ -76,25 +78,44 @@ export default function App() {
           loop={false}
         >
           {/* Each child view of Swiper represents a page */}
-          <View style={styles.page} key="1">
+          <LinearGradient
+            colors={["yellow", "#f8fcff"]}
+            //colors={["#e9f6ff", "#f8fcff"]}
+            style={styles.page}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 0, y: 1 }}
+            key="1"
+          >
             <Text style={styles.pageTitle}>Page 1</Text>
             <Text style={styles.pageContent}>
               Ceci est un exemple de contenu pour la première page.
             </Text>
-          </View>
-          <View style={styles.page} key="2">
+          </LinearGradient>
+          <LinearGradient
+            colors={["#e9f6ff", "#f8fcff"]}
+            style={styles.page}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 0, y: 1 }}
+            key="2"
+          >
             <Text style={styles.pageTitle}>Page 2</Text>
             <Text style={styles.pageContent}>
               Ceci est un exemple de contenu pour la deuxième page.
             </Text>
-          </View>
+          </LinearGradient>
           {/* Add more views as needed */}
-          <View style={styles.page} key="3">
+          <LinearGradient
+            colors={["#e9f6ff", "#f8fcff"]}
+            style={styles.page}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 0, y: 1 }}
+            key="3"
+          >
             <Text style={styles.pageTitle}>Page 3</Text>
             <Text style={styles.pageContent}>
               Ceci est un exemple de contenu pour la troisième page.
             </Text>
-          </View>
+          </LinearGradient>
         </Swiper>
       </View>
 
@@ -127,32 +148,10 @@ const styles = StyleSheet.create({
   //* Style du conteneur ------------------------------------------
   container: {
     flex: 1,
-    backgroundColor: "rgba(233,246,255,1)",
+    //backgroundColor: "#f9fdff",
   },
 
   //* Style du haut slide 2/3 -------------------------------------
-
-  //* Style des dots ----------------------------------------------
-
-  dots: {
-    height: 10,
-    margin: 10,
-    alignItems: "center",
-    justifyContent: "center",
-    flexDirection: "row",
-  },
-  dot: {
-    width: 10,
-    height: 10,
-    borderRadius: 5,
-    margin: 5,
-  },
-  activeDot: {
-    backgroundColor: "blue",
-  },
-  inactiveDot: {
-    backgroundColor: "gray",
-  },
 
   //* Style du bas fixe 1/3 ---------------------------------------
   cupertinoButtonPurple: {
