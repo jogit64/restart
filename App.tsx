@@ -349,16 +349,19 @@ const styles = StyleSheet.create({
   },
   groupRestart: {
     top: 28,
-    left: 59,
+    left: 40,
     width: 174,
     height: 52,
     position: "absolute",
     flexDirection: "row",
+    //alignItems: "center",
   },
   re3: {
     fontFamily: "lemon",
-    color: "rgba(255,255,255,1)",
+    //color: "rgba(255,255,255,1)",
+    color: "#fdd100",
     fontSize: 40,
+    marginRight: 2,
   },
   start: {
     fontFamily: "lemon",
