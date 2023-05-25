@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { StyleSheet, TouchableOpacity, Text } from "react-native";
 
-function MaterialButtonViolet1(props) {
+function MaterialButtonViolet1({ onPress, style }) {
   return (
-    <TouchableOpacity style={[styles.container, props.style]}>
+    <TouchableOpacity style={[styles.container, style]} onPress={onPress}>
       <Text style={styles.caption}>Créer un compte gratuit</Text>
     </TouchableOpacity>
   );

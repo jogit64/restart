@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { StyleSheet, TouchableOpacity, Text } from "react-native";
 
-function MaterialButtonViolet3(props) {
+function MaterialButtonViolet3({ onPress, style }) {
   return (
-    <TouchableOpacity style={[styles.container, props.style]}>
+    <TouchableOpacity style={[styles.container, style]} onPress={onPress}>
       <Text style={styles.meConnecter}>Me connecter</Text>
     </TouchableOpacity>
   );
