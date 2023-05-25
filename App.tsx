@@ -43,6 +43,9 @@ import MaterialButtonViolet3 from "./components/screenLancement/bottompart/Mater
 // import EntypoIcon from "react-native-vector-icons/Entypo";
 import Swiper1 from "./components/screenLancement/swiper1/swiper1";
 
+// * imports pour le haut p2
+import Swiper2 from "./components/screenLancement/swiper2/swiper2";
+
 export default function App() {
   //* ------------------------------------------------------------
   //* A CONSERVER GESTION SPLASHSCREEN ET FONTS
@@ -90,7 +93,8 @@ export default function App() {
           {/* Each child view of Swiper represents a page */}
           {/*  // ! *********** swiper volet 1 ********** */}
           <LinearGradient
-            //colors={["yellow", "#f8fcff"]}
+            //
+            colors={["yellow", "#f8fcff"]}
             colors={["#e9f6ff", "#f8fcff"]}
             style={styles.page}
             start={{ x: 0, y: 0 }}
@@ -101,22 +105,20 @@ export default function App() {
           </LinearGradient>
           {/*  // ! *********** swiper volet 2 ********** */}
           <LinearGradient
+            //colors={["yellow", "#f8fcff"]}
             colors={["#e9f6ff", "#f8fcff"]}
             style={styles.page}
             start={{ x: 0, y: 0 }}
             end={{ x: 0, y: 1 }}
             key="2"
           >
-            <Text style={styles.pageTitle}>Page 2</Text>
-            <Text style={styles.pageContent}>
-              Ceci est un exemple de contenu pour la deuxième page.
-            </Text>
+            <Swiper2 />
           </LinearGradient>
-          {/* Add more views as needed */}
 
           {/*  // ! *********** swiper volet 3 ********** */}
           <LinearGradient
-            colors={["#e9f6ff", "#f8fcff"]}
+            colors={["yellow", "#f8fcff"]}
+            //colors={["#e9f6ff", "#f8fcff"]}
             style={styles.page}
             start={{ x: 0, y: 0 }}
             end={{ x: 0, y: 1 }}

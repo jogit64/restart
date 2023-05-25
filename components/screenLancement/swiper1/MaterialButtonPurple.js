@@ -21,29 +21,29 @@ const styles = StyleSheet.create({
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
-      height: 1,
+      height: 1
     },
     shadowOpacity: 0.35,
     shadowRadius: 5,
     elevation: 2,
     minWidth: 88,
     paddingLeft: 16,
-    paddingRight: 16,
+    paddingRight: 16
   },
   pensees: {
     color: "#fff",
     fontSize: 14,
-    fontFamily: "roboto700",
+    fontFamily: "roboto-regular",
     marginTop: 33,
-    paddingTop: 10,
+    paddingTop: 10
   },
   icon: {
     top: 14,
     left: 31,
     position: "absolute",
     color: "rgba(255,255,255,1)",
-    fontSize: 42,
-  },
+    fontSize: 42
+  }
 });
 
 export default MaterialButtonPurple;

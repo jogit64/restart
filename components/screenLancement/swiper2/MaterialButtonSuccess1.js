@@ -21,29 +21,29 @@ const styles = StyleSheet.create({
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
-      height: 1
+      height: 1,
     },
     shadowOpacity: 0.35,
     shadowRadius: 5,
     elevation: 2,
     minWidth: 88,
     paddingLeft: 16,
-    paddingRight: 16
+    paddingRight: 16,
   },
   croyances: {
     color: "#fff",
     fontSize: 14,
-    fontFamily: "roboto-regular",
+    fontFamily: "roboto700",
     marginTop: 33,
-    paddingTop: 10
+    paddingTop: 10,
   },
   icon: {
     top: 13,
     left: 34,
     position: "absolute",
     color: "rgba(255,255,255,1)",
-    fontSize: 35
-  }
+    fontSize: 35,
+  },
 });
 
 export default MaterialButtonSuccess1;
