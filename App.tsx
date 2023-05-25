@@ -14,33 +14,17 @@ import {
 
 import { LinearGradient } from "expo-linear-gradient";
 
-// import Svg, { Ellipse } from "react-native-svg";
-
 import { useFonts } from "expo-font";
 
 import * as SplashScreen from "expo-splash-screen";
 
-import PagerView from "react-native-pager-view";
 import Swiper from "react-native-swiper";
 
-//import CupertinoButtonPurple from "./components/CupertinoButtonPurple";
-//import MaterialButtonViolet from "./components/MaterialButtonViolet";
-// import MaterialButtonSuccess from "./components/MaterialButtonSuccess";
-// import ButtonCroyances from "./components/ButtonCroyances";
-// import MaterialButtonPurple from "./components/MaterialButtonPurple";
 // * imports pour le bas
 import MaterialButtonViolet1 from "./components/screenLancement/bottompart/MaterialButtonViolet1";
 import MaterialButtonViolet3 from "./components/screenLancement/bottompart/MaterialButtonViolet3";
 
 // * imports pour le haut p1
-// import MaterialButtonSuccess from "./components/screenLancement/swiper1/MaterialButtonSuccess";
-// import MaterialButtonPurple from "./components/screenLancement/swiper1/MaterialButtonPurple";
-// import MaterialButtonSuccess1 from "./components/screenLancement/swiper1/MaterialButtonSuccess1";
-
-// import IoniconsIcon from "react-native-vector-icons/Ionicons";
-
-// import MaterialCommunityIconsIcon from "react-native-vector-icons/MaterialCommunityIcons";
-// import EntypoIcon from "react-native-vector-icons/Entypo";
 import Swiper1 from "./components/screenLancement/swiper1/swiper1";
 
 // * imports pour le haut p2
@@ -58,9 +42,6 @@ export default function App() {
     lemon: require("./assets/fonts/lemon-regular.ttf"),
     roboto: require("./assets/fonts/roboto-regular.ttf"),
     roboto700: require("./assets/fonts/roboto-700.ttf"),
-    // roboto700: require("./assets/fonts/roboto-700.ttf"),
-    // "roboto-700": require("./path-to-fonts/Roboto-700.ttf"),
-    // "roboto-regular": require("./path-to-fonts/Roboto-Regular.ttf"),
   });
 
   useEffect(() => {
@@ -156,33 +137,19 @@ export default function App() {
 //-----------------------------------------------------------------
 
 const styles = StyleSheet.create({
-  //* Style du conteneur ------------------------------------------
+  //* Style du conteneur général ------------------------------------------
   container: {
     flex: 1,
-    //backgroundColor: "#f9fdff",
-    // justifyContent: "center", // Centrer horizontalement
-    //alignItems: "center",
   },
 
   //* Style du haut slide 2/3 -------------------------------------
-  // ! swiper1 *****************************
-
-  // ! swiper2 *****************************
-  // ! swiper3 *****************************
+  // ! cf. chaque swiper
 
   //* Style du bas fixe 1/3 ---------------------------------------
   materialButtonViolet1: {
     height: 55,
     width: 312,
     backgroundColor: "rgba(111,120,189,1)",
-    //shadowColor: "rgba(0,0,0,1)",
-    // shadowOffset: {
-    //   width: 3,
-    //   height: 3,
-    // },
-    //elevation: 5,
-    // shadowOpacity: 0.01,
-    // shadowRadius: 0,
     borderRadius: 11,
     marginTop: 5,
     alignSelf: "center",
@@ -191,7 +158,6 @@ const styles = StyleSheet.create({
     height: 55,
     width: 312,
     backgroundColor: "rgba(255,255,255,1)",
-    //shadowColor: "rgba(225,228,235,1)",
     shadowColor: "#000",
     shadowOffset: {
       width: 3,

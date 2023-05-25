@@ -29,28 +29,28 @@ const styles = StyleSheet.create({
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
-      height: 1
+      height: 1,
     },
     shadowOpacity: 0.35,
     shadowRadius: 5,
     elevation: 2,
     minWidth: 88,
     paddingLeft: 16,
-    paddingRight: 16
+    paddingRight: 16,
   },
   emotions: {
     color: "#fff",
     fontSize: 14,
-    fontFamily: "roboto-regular",
+    fontFamily: "roboto",
     marginTop: 33,
-    paddingTop: 10
+    paddingTop: 10,
   },
   icon: {
     top: 12,
     left: -677,
     position: "absolute",
     color: "rgba(255,255,255,1)",
-    fontSize: 38
+    fontSize: 38,
   },
   rect: {},
   icon2: {
@@ -58,8 +58,8 @@ const styles = StyleSheet.create({
     left: 31,
     position: "absolute",
     color: "rgba(255,255,255,1)",
-    fontSize: 38
-  }
+    fontSize: 38,
+  },
 });
 
 export default MaterialButtonSuccess;

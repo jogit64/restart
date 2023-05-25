@@ -146,7 +146,7 @@ const styles = StyleSheet.create({
     //marginTop: 80,
   },
   titrePrincipal: {
-    fontFamily: "roboto-700",
+    fontFamily: "roboto700",
     color: "rgba(50,56,106,1)",
     fontSize: 22,
     textAlign: "center",
@@ -154,7 +154,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
   },
   sousTitre: {
-    fontFamily: "roboto-regular",
+    fontFamily: "roboto",
     color: "rgba(151,155,180,1)",
     width: 300,
     height: 60,
@@ -186,7 +186,7 @@ const styles = StyleSheet.create({
     top: 36,
     left: 118,
     position: "absolute",
-    fontFamily: "roboto-regular",
+    fontFamily: "roboto",
     color: "rgba(0,0,0,1)",
     fontSize: 12,
     transform: [
@@ -208,7 +208,7 @@ const styles = StyleSheet.create({
     top: 134,
     left: 45,
     position: "absolute",
-    fontFamily: "roboto-regular",
+    fontFamily: "roboto",
     color: "rgba(255,255,255,1)",
     fontSize: 12,
     transform: [
@@ -249,17 +249,17 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   re1: {
-    fontFamily: "lemon-regular",
+    fontFamily: "lemon",
     color: "rgba(253,209,0,1)",
     fontSize: 40,
   },
   start1: {
-    fontFamily: "lemon-regular",
+    fontFamily: "lemon",
     color: "#121212",
     fontSize: 40,
   },
   re2: {
-    fontFamily: "lemon-regular",
+    fontFamily: "lemon",
     color: "rgba(253,209,0,1)",
     fontSize: 40,
     marginLeft: 3,
@@ -280,7 +280,7 @@ const styles = StyleSheet.create({
     top: 101,
     left: 37,
     position: "absolute",
-    fontFamily: "roboto-regular",
+    fontFamily: "roboto",
     color: "rgba(0,0,0,1)",
     fontSize: 12,
     transform: [
@@ -335,7 +335,7 @@ const styles = StyleSheet.create({
     top: 27,
     left: 6,
     position: "absolute",
-    fontFamily: "roboto-regular",
+    fontFamily: "roboto",
     color: "rgba(255,255,255,1)",
     fontSize: 10,
     transform: [
