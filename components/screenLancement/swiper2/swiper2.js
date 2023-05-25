@@ -18,7 +18,7 @@ import FeatherIcon from "react-native-vector-icons/Feather";
 //import MaterialCommunityIconsIcon from "react-native-vector-icons/MaterialCommunityIcons";
 //import EntypoIcon from "react-native-vector-icons/Entypo";
 
-const Swiper1 = () => {
+const Swiper2 = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.titrePrincipal}>
@@ -160,7 +160,8 @@ const styles = StyleSheet.create({
     height: 60,
     textAlign: "center",
     lineHeight: 20,
-    marginLeft: 25,
+    //marginLeft: 25,
+    marginTop: 15,
   },
   ellipseM: {
     top: 109,
@@ -332,4 +333,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Swiper1;
+export default Swiper2;

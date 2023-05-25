@@ -46,6 +46,9 @@ import Swiper1 from "./components/screenLancement/swiper1/swiper1";
 // * imports pour le haut p2
 import Swiper2 from "./components/screenLancement/swiper2/swiper2";
 
+// * imports pour le haut p3
+import Swiper3 from "./components/screenLancement/swiper3/swiper3";
+
 export default function App() {
   //* ------------------------------------------------------------
   //* A CONSERVER GESTION SPLASHSCREEN ET FONTS
@@ -117,17 +120,14 @@ export default function App() {
 
           {/*  // ! *********** swiper volet 3 ********** */}
           <LinearGradient
-            colors={["yellow", "#f8fcff"]}
-            //colors={["#e9f6ff", "#f8fcff"]}
+            //colors={["yellow", "#f8fcff"]}
+            colors={["#e9f6ff", "#f8fcff"]}
             style={styles.page}
             start={{ x: 0, y: 0 }}
             end={{ x: 0, y: 1 }}
             key="3"
           >
-            <Text style={styles.pageTitle}>Page 3</Text>
-            <Text style={styles.pageContent}>
-              Ceci est un exemple de contenu pour la troisième page.
-            </Text>
+            <Swiper3 />
           </LinearGradient>
         </Swiper>
       </View>

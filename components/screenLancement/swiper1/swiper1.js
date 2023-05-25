@@ -120,7 +120,6 @@ const styles = StyleSheet.create({
     textAlign: "center",
     lineHeight: 20,
     marginTop: 15,
-    //marginLeft: 25,
   },
   ellipseM: {
     top: 54,
