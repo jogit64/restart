@@ -49,9 +49,9 @@ import * as SplashScreen from "expo-splash-screen";
 import { useFonts } from "expo-font";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import HomeScreen from "./screens/HomeScreen"; // import your HomeScreen component
-import LoginScreen from "./screens/LoginScreen";
-import SignUpScreen from "./screens/SignUpScreen";
+import HomeScreen from "./screens/Home/HomeScreen"; // import your HomeScreen component
+import LoginScreen from "./screens/Auth/LoginScreen";
+import SignUpScreen from "./screens/Auth/SignUpScreen";
 
 export default function App() {
   //* ------------------------------------------------------------
@@ -84,17 +84,6 @@ export default function App() {
   const screenWidth = Dimensions.get("window").width;
 
   return (
-    // <NavigationContainer>
-    //   <Stack.Navigator
-    //     initialRouteName="Home"
-    //     screenOptions={{ headerShown: false }}
-    //   >
-    //     <Stack.Screen name="Home" component={HomeScreen} />
-    //     <Stack.Screen name="Login" component={LoginScreen} />
-    //     <Stack.Screen name="SignUp" component={SignUpScreen} />
-    //   </Stack.Navigator>
-    // </NavigationContainer>
-
     <NavigationContainer>
       <AppNavigator />
     </NavigationContainer>

@@ -24,17 +24,17 @@ import { StatusBar } from "expo-status-bar";
 import Swiper from "react-native-swiper";
 
 // * imports pour le bas
-import MaterialButtonViolet1 from "../components/screenLancement/bottompart/MaterialButtonViolet1";
-import MaterialButtonViolet3 from "../components/screenLancement/bottompart/MaterialButtonViolet3";
+import MaterialButtonViolet1 from "./bottompart/MaterialButtonViolet1";
+import MaterialButtonViolet3 from "./bottompart/MaterialButtonViolet3";
 
 // * imports pour le haut p1
-import Swiper1 from "../components/screenLancement/swiper1/swiper1";
+import Swiper1 from "./swiper1/swiper1";
 
 // * imports pour le haut p2
-import Swiper2 from "../components/screenLancement/swiper2/swiper2";
+import Swiper2 from "./swiper2/swiper2";
 
 // * imports pour le haut p3
-import Swiper3 from "../components/screenLancement/swiper3/swiper3";
+import Swiper3 from "./swiper3/swiper3";
 
 export default function HomeScreen() {
   const navigation = useNavigation();

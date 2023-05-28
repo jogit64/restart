@@ -4,9 +4,11 @@ import {
   createStackNavigator,
   TransitionPresets,
 } from "@react-navigation/stack";
-import HomeScreen from "./screens/HomeScreen";
-import LoginScreen from "./screens/LoginScreen";
-import SignUpScreen from "./screens/SignUpScreen";
+import HomeScreen from "./screens/Home/HomeScreen";
+import LoginScreen from "./screens/Auth/LoginScreen";
+import SignUpScreen from "./screens/Auth/SignUpScreen";
+import CGUScreen from "./screens/Conditions/CGUScreen";
+import PolitiqueScreen from "./screens/Conditions/PolitiqueScreen";
 
 const Stack = createStackNavigator();
 
@@ -31,6 +33,16 @@ export default function AppNavigator() {
       <Stack.Screen
         name="SignUp"
         component={SignUpScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="CGU"
+        component={CGUScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="Politique"
+        component={PolitiqueScreen}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>
