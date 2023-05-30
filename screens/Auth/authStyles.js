@@ -3,8 +3,10 @@ import { StyleSheet } from "react-native";
 export const authStyles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "red",
+    //ici le test du fond en rouge ais qu'on ne voit pas
+    backgroundColor: "#f8fcff",
     //alignItems: "stretch",
+    //backgroundColor: "red",
     justifyContent: "flex-start",
   },
   gradient: {
@@ -23,6 +25,11 @@ export const authStyles = StyleSheet.create({
 
     //  marginBottom: 0, // Ajouter une marge inférieure pour éviter le scroll infini
     //maxHeight: "100%", // Utiliser une hauteur maximale
+  },
+
+  scrollView: {
+    flex: 1,
+    //maxHeight: "100%",
   },
 
   iconContainer: {
@@ -128,6 +135,7 @@ export const authStyles = StyleSheet.create({
     fontSize: 11,
     textAlign: "center",
     marginTop: 45,
+    paddingBottom: 30,
   },
 
   errorText: {

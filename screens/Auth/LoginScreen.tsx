@@ -5,6 +5,8 @@ import {
   TouchableOpacity,
   StyleSheet,
   ScrollView,
+  Keyboard,
+  ActivityIndicator,
 } from "react-native";
 import { authStyles } from "./authStyles";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
@@ -12,7 +14,39 @@ import { LinearGradient } from "expo-linear-gradient";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import React, { useState, useEffect } from "react";
 
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { getFirestore, doc, getDoc } from "firebase/firestore";
+
 const LoginScreen = ({ navigation }) => {
+  const [isLoading, setIsLoading] = useState(false);
+  const handleLogin = async () => {
+    try {
+      Keyboard.dismiss(); // ferme le clavier
+      setIsLoading(true); // démarre l'indicateur de chargement
+
+      const auth = getAuth();
+      await signInWithEmailAndPassword(auth, email, password);
+      navigation.navigate("Demar");
+      // Naviguer vers la prochaine page ou faire quelque chose avec l'utilisateur
+      // Par exemple, vous pouvez récupérer plus d'informations sur l'utilisateur à partir de Firestore
+      const user = auth.currentUser;
+      if (user) {
+        const db = getFirestore();
+        const userDocRef = doc(db, "users", user.uid);
+        const userDocSnap = await getDoc(userDocRef);
+        // Vous pouvez utiliser ces informations comme vous le souhaitez
+        // Par exemple, vous pouvez naviguer vers un autre écran avec ces informations
+      } else {
+        // Gérer le cas où l'utilisateur est null
+      }
+    } catch (error) {
+      // Gérer les erreurs de connexion
+      console.error("Erreur lors de la connexion :", error);
+      // Par exemple, vous pouvez afficher un message d'erreur
+    }
+    setIsLoading(false); // arrête l'indicateur de chargement
+  };
+
   // Définition des états
   const [activeInput, setActiveInput] = useState("");
   const [isButtonActive, setButtonActive] = useState(false);
@@ -85,7 +119,7 @@ const LoginScreen = ({ navigation }) => {
   }, [isEmailValid, isPasswordValid]);
 
   return (
-    <View>
+    <View style={authStyles.container}>
       <ScrollView>
         <LinearGradient
           colors={["#e9f6ff", "#f8fcff"]}
@@ -181,14 +215,15 @@ const LoginScreen = ({ navigation }) => {
             </View>
 
             {/* // ! bouton Créer un cpte gratuit */}
+            {isLoading ? (
+              <ActivityIndicator size="large" color="#0000ff" />
+            ) : null}
             <TouchableOpacity
               style={[
                 authStyles.buttonCreer,
                 isButtonActive ? authStyles.buttonActive : null,
               ]}
-              onPress={() => {
-                /* Mettre la logique de connexion ici */
-              }}
+              onPress={handleLogin}
             >
               <Text style={authStyles.buttonText}>Me connecter</Text>
             </TouchableOpacity>

@@ -125,8 +125,8 @@ const SignUpScreen = ({ navigation }) => {
   };
 
   return (
-    <View>
-      <ScrollView style={authStyles.ScrollView}>
+    <View style={authStyles.container}>
+      <ScrollView style={authStyles.scrollView}>
         <LinearGradient
           //colors={["yellow", "#f8fcff"]}
           colors={["#e9f6ff", "#f8fcff"]}
