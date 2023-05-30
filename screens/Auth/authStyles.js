@@ -8,7 +8,7 @@ export const authStyles = StyleSheet.create({
     justifyContent: "flex-start",
   },
   gradient: {
-    flex: 1,
+    //flex: 1,
   },
 
   contentContainer: {
@@ -19,7 +19,6 @@ export const authStyles = StyleSheet.create({
   scrollViewContainer: {
     //flex: 1,
     marginTop: 60,
-    alignSelf: "center",
     alignSelf: "center",
 
     //  marginBottom: 0, // Ajouter une marge inférieure pour éviter le scroll infini

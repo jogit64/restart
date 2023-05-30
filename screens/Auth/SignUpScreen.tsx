@@ -5,12 +5,18 @@ import {
   TouchableOpacity,
   StyleSheet,
   ScrollView,
+  Keyboard,
 } from "react-native";
 import { authStyles } from "./authStyles";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { LinearGradient } from "expo-linear-gradient";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import React, { useState, useEffect } from "react";
+
+import { auth } from "../../firebase.js";
+import { getFirestore, doc, setDoc } from "firebase/firestore";
+
+import { createUserWithEmailAndPassword } from "firebase/auth";
 
 const SignUpScreen = ({ navigation }) => {
   // Définition des états
@@ -29,6 +35,7 @@ const SignUpScreen = ({ navigation }) => {
   const [emailError, setEmailError] = useState("");
 
   const [isPasswordVisible, setPasswordVisibility] = useState(false);
+  const [firstName, setFirstName] = useState("");
 
   // Fonction pour gérer le focus sur les différents inputs
   // Elle réinitialise aussi l'état isInputValid à false lors du focus
@@ -71,6 +78,7 @@ const SignUpScreen = ({ navigation }) => {
 
     if (isValid) {
       setIsFirstNameValid(true);
+      setFirstName(firstName); // Met à jour l'état du prénom
     } else {
       setIsFirstNameValid(false);
     }
@@ -81,9 +89,44 @@ const SignUpScreen = ({ navigation }) => {
     setButtonActive(isEmailValid && isPasswordValid && isFirstNameValid);
   }, [isEmailValid, isPasswordValid, isFirstNameValid]);
 
+  const db = getFirestore();
+
+  // Fonction pour gérer l'inscription de l'utilisateur
+  const handleRegister = async () => {
+    Keyboard.dismiss();
+    try {
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      const user = userCredential.user;
+      console.log("User registered successfully!", user);
+
+      // Enregistrer le prénom de l'utilisateur dans Firestore
+      const userDocRef = doc(db, "users", user.uid);
+      await setDoc(userDocRef, { firstName });
+
+      // Redirige vers DemarScreen.
+      navigation.navigate("Demar");
+    } catch (error) {
+      // Une erreur s'est produite.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      console.log("Failed to register user.", errorCode, errorMessage);
+
+      // Gestion d'erreur spécifique pour un email déjà utilisé
+      if (errorCode === "auth/email-already-in-use") {
+        setEmailError(
+          "Cette adresse e-mail est déjà utilisée. \n Veuillez aller sur l'écran Se connecter."
+        );
+      }
+    }
+  };
+
   return (
     <View>
-      <ScrollView>
+      <ScrollView style={authStyles.ScrollView}>
         <LinearGradient
           //colors={["yellow", "#f8fcff"]}
           colors={["#e9f6ff", "#f8fcff"]}
@@ -178,9 +221,7 @@ const SignUpScreen = ({ navigation }) => {
                 authStyles.buttonCreer,
                 isButtonActive && authStyles.buttonActive,
               ]}
-              onPress={() => {
-                /* Mettre la logique d'inscription ici */
-              }}
+              onPress={handleRegister} // Utilisation de la fonction handleRegister ici
             >
               <Text style={authStyles.buttonText}>Créer un compte gratuit</Text>
             </TouchableOpacity>

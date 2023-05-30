@@ -1,4 +1,3 @@
-// AppNavigator.tsx
 import React from "react";
 import {
   createStackNavigator,
@@ -9,6 +8,7 @@ import LoginScreen from "./screens/Auth/LoginScreen";
 import SignUpScreen from "./screens/Auth/SignUpScreen";
 import CGUScreen from "./screens/Conditions/CGUScreen";
 import PolitiqueScreen from "./screens/Conditions/PolitiqueScreen";
+import DemarScreen from "./screens/Appli/DemarScreen";
 
 const Stack = createStackNavigator();
 
@@ -43,6 +43,11 @@ export default function AppNavigator() {
       <Stack.Screen
         name="Politique"
         component={PolitiqueScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="Demar"
+        component={DemarScreen}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>
