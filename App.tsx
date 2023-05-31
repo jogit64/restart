@@ -17,6 +17,8 @@ import {
 } from "react-native";
 
 import { LinearGradient } from "expo-linear-gradient";
+//import Toast from "react-native-toast-message";
+//import Toast from "react-native-root-toast";
 
 //import { useFonts } from "expo-font";
 
@@ -89,7 +91,3 @@ export default function App() {
     </NavigationContainer>
   );
 }
-
-//-----------------------------------------------------------------
-// LES STYLES
-//-----------------------------------------------------------------

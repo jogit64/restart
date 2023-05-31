@@ -17,6 +17,8 @@ import { auth } from "../../firebase.js";
 import { getFirestore, doc, setDoc } from "firebase/firestore";
 
 import { createUserWithEmailAndPassword } from "firebase/auth";
+//import Toast from "react-native-toast-message";
+import Toast from "react-native-root-toast";
 
 const SignUpScreen = ({ navigation }) => {
   // Définition des états
@@ -111,25 +113,36 @@ const SignUpScreen = ({ navigation }) => {
       // Redirige vers DemarScreen.
       navigation.navigate("Demar");
     } catch (error) {
-      // Une erreur s'est produite.
       var errorCode = error.code;
       var errorMessage = error.message;
       console.log("Failed to register user.", errorCode, errorMessage);
 
+      // Message par défaut
+      let toastMessage = errorMessage;
+
       // Gestion d'erreur spécifique pour un email déjà utilisé
       if (errorCode === "auth/email-already-in-use") {
-        setEmailError(
-          "Cette adresse e-mail est déjà utilisée.\nVeuillez aller sur l'écran Me connecter."
-        );
+        toastMessage =
+          "Cette adresse e-mail est déjà utilisée.\nVeuillez aller sur l'écran Me connecter.";
       }
       // Gestion d'erreur pour un mot de passe invalide
       else if (errorCode === "auth/weak-password") {
-        setPasswordError("Le mot de passe est trop faible.");
+        toastMessage = "Le mot de passe est trop faible.";
       }
       // Gestion d'erreur pour un e-mail invalide
       else if (errorCode === "auth/invalid-email") {
-        setEmailError("L'adresse e-mail n'est pas valide.");
+        toastMessage = "L'adresse e-mail n'est pas valide.";
       }
+
+      // Afficher le message d'erreur en utilisant Toast
+      Toast.show(toastMessage, {
+        duration: Toast.durations.LONG,
+        position: Toast.positions.TOP,
+        shadow: true,
+        animation: true,
+        hideOnPress: true,
+        delay: 0,
+      });
     }
   };
 

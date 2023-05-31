@@ -16,6 +16,8 @@ import React, { useState, useEffect } from "react";
 
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { getFirestore, doc, getDoc } from "firebase/firestore";
+//import Toast from "react-native-toast-message";
+import Toast from "react-native-root-toast";
 
 const LoginScreen = ({ navigation }) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -44,23 +46,37 @@ const LoginScreen = ({ navigation }) => {
 
       var errorCode = error.code;
       var errorMessage = error.message;
+      var toastMessage = "";
 
       // Gestion d'erreur spécifique pour un email non trouvé
       if (errorCode === "auth/user-not-found") {
-        setEmailError(
-          "Il n'y a pas d'utilisateur correspondant à cet identifiant.\nL'utilisateur peut avoir été supprimé."
-        );
+        toastMessage =
+          "Il n'y a pas d'utilisateur correspondant à cet identifiant. L'utilisateur peut avoir été supprimé.";
       }
       // Gestion d'erreur pour un mot de passe invalide
       else if (errorCode === "auth/wrong-password") {
-        setPasswordError(
-          "Le mot de passe est invalide\nou l'utilisateur n'a pas de mot de passe."
-        );
+        toastMessage =
+          "Le mot de passe est invalide\nou l'utilisateur n'a pas de mot de passe.";
       }
       // Gestion d'erreur pour un e-mail invalide
       else if (errorCode === "auth/invalid-email") {
-        setEmailError("L'adresse e-mail n'est pas valide.");
+        toastMessage = "L'adresse e-mail n'est pas valide.";
       }
+      // Gestion d'erreur pour trop de tentatives de connexion
+      else if (errorCode === "auth/too-many-requests") {
+        toastMessage =
+          "L'accès à ce compte a été temporairement désactivé\nen raison de nombreuses tentatives de connexion échouées.\nVous pouvez le restaurer immédiatement en réinitialisant\nvotre mot de passe ou vous pouvez réessayer plus tard.";
+      }
+
+      // Afficher le message d'erreur en utilisant Toast
+      Toast.show(toastMessage, {
+        duration: Toast.durations.LONG,
+        position: Toast.positions.TOP,
+        shadow: true,
+        animation: true,
+        hideOnPress: true,
+        delay: 0,
+      });
     }
     setIsLoading(false); // arrête l'indicateur de chargement
   };
@@ -201,9 +217,9 @@ const LoginScreen = ({ navigation }) => {
             </View>
 
             {/* // ! bouton Créer un cpte gratuit */}
-            {isLoading ? (
+            {/* {isLoading ? (
               <ActivityIndicator size="large" color="#0000ff" />
-            ) : null}
+            ) : null} */}
             <TouchableOpacity
               style={[
                 authStyles.buttonCreer,
@@ -251,6 +267,22 @@ const LoginScreen = ({ navigation }) => {
           </View>
         </LinearGradient>
       </ScrollView>
+      {isLoading ? (
+        <View
+          style={{
+            position: "absolute",
+            top: 0,
+            right: 0,
+            bottom: 0,
+            left: 0,
+            backgroundColor: "rgba(0,0,0,0.5)",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <ActivityIndicator size="large" color="#0000ff" />
+        </View>
+      ) : null}
     </View>
   );
 };
