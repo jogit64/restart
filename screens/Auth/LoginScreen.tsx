@@ -20,8 +20,8 @@ import { getFirestore, doc, getDoc } from "firebase/firestore";
 const LoginScreen = ({ navigation }) => {
   const [isLoading, setIsLoading] = useState(false);
   const handleLogin = async () => {
+    Keyboard.dismiss(); // ferme le clavier
     try {
-      Keyboard.dismiss(); // ferme le clavier
       setIsLoading(true); // démarre l'indicateur de chargement
 
       const auth = getAuth();
@@ -40,9 +40,27 @@ const LoginScreen = ({ navigation }) => {
         // Gérer le cas où l'utilisateur est null
       }
     } catch (error) {
-      // Gérer les erreurs de connexion
       console.error("Erreur lors de la connexion :", error);
-      // Par exemple, vous pouvez afficher un message d'erreur
+
+      var errorCode = error.code;
+      var errorMessage = error.message;
+
+      // Gestion d'erreur spécifique pour un email non trouvé
+      if (errorCode === "auth/user-not-found") {
+        setEmailError(
+          "Il n'y a pas d'utilisateur correspondant à cet identifiant.\nL'utilisateur peut avoir été supprimé."
+        );
+      }
+      // Gestion d'erreur pour un mot de passe invalide
+      else if (errorCode === "auth/wrong-password") {
+        setPasswordError(
+          "Le mot de passe est invalide\nou l'utilisateur n'a pas de mot de passe."
+        );
+      }
+      // Gestion d'erreur pour un e-mail invalide
+      else if (errorCode === "auth/invalid-email") {
+        setEmailError("L'adresse e-mail n'est pas valide.");
+      }
     }
     setIsLoading(false); // arrête l'indicateur de chargement
   };
@@ -98,22 +116,6 @@ const LoginScreen = ({ navigation }) => {
     }
   };
 
-  // Fonction pour valider le prénom
-  // Elle vérifie si le prénom est non vide
-  // const validateFirstName = (firstName) => {
-  //   const isValid = firstName !== "";
-
-  //   if (isValid) {
-  //     setIsFirstNameValid(true);
-  //   } else {
-  //     setIsFirstNameValid(false);
-  //   }
-  // };
-
-  // Effect pour mettre à jour l'état isButtonActive chaque fois que l'état de validation des champs est modifié
-  // useEffect(() => {
-  //   setButtonActive(isEmailValid && isPasswordValid && isFirstNameValid);
-  // }, [isEmailValid, isPasswordValid, isFirstNameValid]);
   useEffect(() => {
     setButtonActive(isEmailValid && isPasswordValid);
   }, [isEmailValid, isPasswordValid]);
@@ -138,22 +140,6 @@ const LoginScreen = ({ navigation }) => {
             <Text style={authStyles.titrePrincipal}>
               Connectez-vous{"\n"}à votre compte
             </Text>
-
-            {/* // ! label Prénom + INPUT
-          <Text style={authStyles.label}>Prénom</Text>
-
-          <TextInput
-            placeholder="Entrez un prénom / pseudo"
-            style={[
-              authStyles.input,
-              activeInput === "firstName" && authStyles.activeInput,
-              isFirstNameValid && authStyles.inputValid,
-            ]}
-            onFocus={() => handleFocus("firstName")}
-            onChangeText={(text) => {
-              validateFirstName(text);
-            }}
-          /> */}
 
             {/* // ! label Email + INPUT */}
             <Text style={authStyles.label}>Email</Text>

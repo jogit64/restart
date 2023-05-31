@@ -85,7 +85,7 @@ export const authStyles = StyleSheet.create({
   buttonCreer: {
     width: 260,
     height: 44,
-    backgroundColor: "#6f78bd",
+    backgroundColor: "#dcdeeb",
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
@@ -94,7 +94,7 @@ export const authStyles = StyleSheet.create({
   },
 
   buttonActive: {
-    backgroundColor: "blue",
+    backgroundColor: "#6f78bd",
   },
 
   buttonText: {

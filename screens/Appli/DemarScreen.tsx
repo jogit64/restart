@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Image } from "react-native";
 import { auth } from "../../firebase.js";
 import { getFirestore, doc, getDoc } from "firebase/firestore";
+import { LinearGradient } from "expo-linear-gradient";
 
 const DemarScreen = () => {
   const [user, setUser] = useState(null);
@@ -32,11 +33,24 @@ const DemarScreen = () => {
 
   return (
     <View style={styles.container}>
-      {user ? (
-        <Text style={styles.text}>Bonjour, {user.firstName}!</Text>
-      ) : (
-        <Text style={styles.text}>Pas d'utilisateur connecté.</Text>
-      )}
+      <LinearGradient
+        colors={["#e9f6ff", "#f8fcff"]}
+        style={styles.gradient}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 0, y: 1 }}
+        key="1"
+      >
+        <Image
+          source={require("../../assets/images/go11.png")}
+          resizeMode="contain"
+          style={styles.image}
+        ></Image>
+        {user ? (
+          <Text style={styles.text}>Bonjour, {user.firstName}!</Text>
+        ) : (
+          <Text style={styles.text}>Pas d'utilisateur connecté.</Text>
+        )}
+      </LinearGradient>
     </View>
   );
 };
@@ -44,11 +58,21 @@ const DemarScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
+    justifyContent: "flex-start",
     alignItems: "center",
   },
   text: {
+    flex: 1,
     fontSize: 20,
+  },
+  image: {
+    flex: 1,
+    width: "100%",
+  },
+
+  gradient: {
+    flex: 1,
+    width: "100%",
   },
 });
 

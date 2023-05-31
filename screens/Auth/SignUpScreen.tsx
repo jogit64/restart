@@ -8,7 +8,7 @@ import {
   Keyboard,
 } from "react-native";
 import { authStyles } from "./authStyles";
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+// import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { LinearGradient } from "expo-linear-gradient";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import React, { useState, useEffect } from "react";
@@ -46,13 +46,13 @@ const SignUpScreen = ({ navigation }) => {
   // Fonction pour valider le mot de passe
   // Elle vérifie si le mot de passe a au moins 8 caractères
   const validatePassword = (password) => {
-    const isValid = password.length >= 8;
+    const isValid = password.length >= 6;
 
     if (isValid) {
       setPasswordError("");
       setIsPasswordValid(true);
     } else {
-      setPasswordError("Le mot de passe doit comporter au moins 8 caractères");
+      setPasswordError("Le mot de passe doit comporter au moins 6 caractères");
       setIsPasswordValid(false);
     }
   };
@@ -93,6 +93,7 @@ const SignUpScreen = ({ navigation }) => {
 
   // Fonction pour gérer l'inscription de l'utilisateur
   const handleRegister = async () => {
+    // Fermer le clavier
     Keyboard.dismiss();
     try {
       const userCredential = await createUserWithEmailAndPassword(
@@ -118,8 +119,16 @@ const SignUpScreen = ({ navigation }) => {
       // Gestion d'erreur spécifique pour un email déjà utilisé
       if (errorCode === "auth/email-already-in-use") {
         setEmailError(
-          "Cette adresse e-mail est déjà utilisée. \n Veuillez aller sur l'écran Se connecter."
+          "Cette adresse e-mail est déjà utilisée.\nVeuillez aller sur l'écran Me connecter."
         );
+      }
+      // Gestion d'erreur pour un mot de passe invalide
+      else if (errorCode === "auth/weak-password") {
+        setPasswordError("Le mot de passe est trop faible.");
+      }
+      // Gestion d'erreur pour un e-mail invalide
+      else if (errorCode === "auth/invalid-email") {
+        setEmailError("L'adresse e-mail n'est pas valide.");
       }
     }
   };
