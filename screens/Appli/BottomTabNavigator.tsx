@@ -2,21 +2,22 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
 
-import DemarScreen from "./DemarScreen";
+import WelcomeScreen from "./WelcomeScreen";
 import Screen2 from "./Screen2";
 import Screen3 from "./Screen3";
 import Screen4 from "./Screen4";
+import DemarScreen from "./DemarScreen";
 
 const Tab = createBottomTabNavigator();
 
-const BottomTabNavigator = () => {
+export const BottomTabNavigator = () => {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
 
-          if (route.name === "Home") {
+          if (route.name === "HomeTab") {
             iconName = focused ? "ios-home" : "ios-home-outline";
           } else if (route.name === "Screen2") {
             iconName = focused ? "ios-list" : "ios-list-outline";
@@ -35,7 +36,11 @@ const BottomTabNavigator = () => {
         inactiveTintColor: "gray",
       }}
     >
-      <Tab.Screen name="Demar" component={DemarScreen} />
+      <Tab.Screen
+        name="HomeTab"
+        component={DemarScreen}
+        options={{ headerShown: false }}
+      />
       <Tab.Screen name="Screen2" component={Screen2} />
       <Tab.Screen name="Screen3" component={Screen3} />
       <Tab.Screen name="Screen4" component={Screen4} />

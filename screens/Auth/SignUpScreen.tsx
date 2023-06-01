@@ -114,8 +114,8 @@ const SignUpScreen = ({ navigation }) => {
       const userDocRef = doc(db, "users", user.uid);
       await setDoc(userDocRef, { firstName });
 
-      // Redirige vers DemarScreen.
-      navigation.navigate("Demar");
+      // Redirige vers BottomTabNavigator.
+      navigation.navigate("BottomTabNavigator");
     } catch (error) {
       var errorCode = error.code;
       var errorMessage = error.message;

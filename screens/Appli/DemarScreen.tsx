@@ -5,6 +5,8 @@ import { getFirestore, doc, getDoc } from "firebase/firestore";
 import { LinearGradient } from "expo-linear-gradient";
 import UserContext from "../../UserContext"; // Import du UserContext
 
+//import { BottomTabNavigator } from "./BottomTabNavigator";
+
 const DemarScreen = () => {
   const { firstName } = useContext(UserContext); // Utilisation du UserContext pour accéder au prénom de l'utilisateur
 
@@ -50,14 +52,12 @@ const DemarScreen = () => {
           resizeMode="contain"
           style={styles.image}
         ></Image>
-
         {/* // * avant user context et firstname */}
         {/* {user ? (
           <Text style={styles.text}>Bonjour, {user.firstName}!</Text>
         ) : (
           <Text style={styles.text}>Pas d'utilisateur connecté.</Text>
         )} */}
-
         {firstName ? ( // Utilisation du prénom de l'utilisateur à partir du UserContext
           <Text style={styles.text}>Bonjour, {firstName}!</Text>
         ) : (
