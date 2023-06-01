@@ -30,11 +30,10 @@ export const BottomTabNavigator = () => {
           // Vous pouvez retourner n'importe quel composant ici, pas seulement Ionicons
           return <Ionicons name={iconName} size={size} color={color} />;
         },
+        tabBarActiveTintColor: "tomato",
+        tabBarInactiveTintColor: "gray",
+        tabBarStyle: { display: "flex" },
       })}
-      tabBarOptions={{
-        activeTintColor: "tomato",
-        inactiveTintColor: "gray",
-      }}
     >
       <Tab.Screen
         name="HomeTab"
