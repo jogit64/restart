@@ -1,35 +1,40 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
 import { auth } from "../../firebase.js";
 import { getFirestore, doc, getDoc } from "firebase/firestore";
 import { LinearGradient } from "expo-linear-gradient";
+import UserContext from "../../UserContext"; // Import du UserContext
 
 const DemarScreen = () => {
-  const [user, setUser] = useState(null);
-  const db = getFirestore();
+  const { firstName } = useContext(UserContext); // Utilisation du UserContext pour accéder au prénom de l'utilisateur
 
-  useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged(async (user) => {
-      if (user) {
-        // Récupérer le document de l'utilisateur depuis Firestore
-        const userDocRef = doc(db, "users", user.uid);
-        const userDocSnapshot = await getDoc(userDocRef);
+  // * ************************* avant la mise en place du usercontext, appel à db firebase
+  //   const [user, setUser] = useState(null);
+  //   const db = getFirestore();
 
-        if (userDocSnapshot.exists()) {
-          // Extraire le prénom de l'utilisateur du document
-          const userData = userDocSnapshot.data();
-          const firstName = userData.firstName;
-          setUser({ ...user, firstName });
-        } else {
-          setUser(user);
-        }
-      } else {
-        setUser(null);
-      }
-    });
+  //   useEffect(() => {
+  //     const unsubscribe = auth.onAuthStateChanged(async (user) => {
+  //       if (user) {
+  //         // Récupérer le document de l'utilisateur depuis Firestore
+  //         const userDocRef = doc(db, "users", user.uid);
+  //         const userDocSnapshot = await getDoc(userDocRef);
 
-    return unsubscribe;
-  }, []);
+  //         if (userDocSnapshot.exists()) {
+  //           // Extraire le prénom de l'utilisateur du document
+  //           const userData = userDocSnapshot.data();
+  //           const firstName = userData.firstName;
+  //           setUser({ ...user, firstName });
+  //         } else {
+  //           setUser(user);
+  //         }
+  //       } else {
+  //         setUser(null);
+  //       }
+  //     });
+
+  //     return unsubscribe;
+  //   }, []);
+  // * ****************** fin ancien appel
 
   return (
     <View style={styles.container}>
@@ -45,8 +50,16 @@ const DemarScreen = () => {
           resizeMode="contain"
           style={styles.image}
         ></Image>
-        {user ? (
+
+        {/* // * avant user context et firstname */}
+        {/* {user ? (
           <Text style={styles.text}>Bonjour, {user.firstName}!</Text>
+        ) : (
+          <Text style={styles.text}>Pas d'utilisateur connecté.</Text>
+        )} */}
+
+        {firstName ? ( // Utilisation du prénom de l'utilisateur à partir du UserContext
+          <Text style={styles.text}>Bonjour, {firstName}!</Text>
         ) : (
           <Text style={styles.text}>Pas d'utilisateur connecté.</Text>
         )}

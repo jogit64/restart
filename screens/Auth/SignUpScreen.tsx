@@ -11,7 +11,7 @@ import { authStyles } from "./authStyles";
 // import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { LinearGradient } from "expo-linear-gradient";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 
 import { auth } from "../../firebase.js";
 import { getFirestore, doc, setDoc } from "firebase/firestore";
@@ -19,6 +19,8 @@ import { getFirestore, doc, setDoc } from "firebase/firestore";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 //import Toast from "react-native-toast-message";
 import Toast from "react-native-root-toast";
+
+import UserContext from "../../UserContext"; // Import du UserContext
 
 const SignUpScreen = ({ navigation }) => {
   // Définition des états
@@ -37,15 +39,17 @@ const SignUpScreen = ({ navigation }) => {
   const [emailError, setEmailError] = useState("");
 
   const [isPasswordVisible, setPasswordVisibility] = useState(false);
-  const [firstName, setFirstName] = useState("");
+  const [firstNameInput, setFirstNameInput] = useState(""); // Renommé en firstNameInput
 
-  // Fonction pour gérer le focus sur les différents inputs
+  const { setFirstName } = useContext(UserContext);
+
+  // ! Fonction pour gérer le focus sur les différents inputs
   // Elle réinitialise aussi l'état isInputValid à false lors du focus
   const handleFocus = (name) => {
     setActiveInput(name);
     setIsInputValid(false);
   };
-  // Fonction pour valider le mot de passe
+  //  ! Fonction pour valider le mot de passe
   // Elle vérifie si le mot de passe a au moins 8 caractères
   const validatePassword = (password) => {
     const isValid = password.length >= 6;
@@ -59,7 +63,7 @@ const SignUpScreen = ({ navigation }) => {
     }
   };
 
-  // Fonction pour valider l'email
+  // ! Fonction pour valider l'email
   // Elle vérifie si l'email respecte le format correct
   const validateEmail = (email) => {
     const isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -73,14 +77,14 @@ const SignUpScreen = ({ navigation }) => {
     }
   };
 
-  // Fonction pour valider le prénom
+  // ! Fonction pour valider le prénom
   // Elle vérifie si le prénom est non vide
   const validateFirstName = (firstName) => {
     const isValid = firstName !== "";
 
     if (isValid) {
       setIsFirstNameValid(true);
-      setFirstName(firstName); // Met à jour l'état du prénom
+      setFirstNameInput(firstName); // Mettre à jour firstNameInput avec la valeur saisie par l'utilisateur
     } else {
       setIsFirstNameValid(false);
     }

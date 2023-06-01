@@ -12,15 +12,19 @@ import { authStyles } from "./authStyles";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { LinearGradient } from "expo-linear-gradient";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { getFirestore, doc, getDoc } from "firebase/firestore";
 //import Toast from "react-native-toast-message";
 import Toast from "react-native-root-toast";
 
+import UserContext from "../../UserContext"; // Import du UserContext
+
 const LoginScreen = ({ navigation }) => {
   const [isLoading, setIsLoading] = useState(false);
+  const { setFirstName } = useContext(UserContext); // Ajout de setFirstName depuis le UserContext
+
   const handleLogin = async () => {
     Keyboard.dismiss(); // ferme le clavier
     try {
@@ -29,15 +33,19 @@ const LoginScreen = ({ navigation }) => {
       const auth = getAuth();
       await signInWithEmailAndPassword(auth, email, password);
       navigation.navigate("Demar");
-      // Naviguer vers la prochaine page ou faire quelque chose avec l'utilisateur
-      // Par exemple, vous pouvez récupérer plus d'informations sur l'utilisateur à partir de Firestore
+
+      // Récupérer les informations sur l'utilisateur à partir de Firestore
       const user = auth.currentUser;
       if (user) {
         const db = getFirestore();
         const userDocRef = doc(db, "users", user.uid);
         const userDocSnap = await getDoc(userDocRef);
-        // Vous pouvez utiliser ces informations comme vous le souhaitez
-        // Par exemple, vous pouvez naviguer vers un autre écran avec ces informations
+
+        // Mettre à jour le prénom de l'utilisateur dans le contexte
+        const userData = userDocSnap.data();
+        if (userData && userData.firstName) {
+          setFirstName(userData.firstName);
+        }
       } else {
         // Gérer le cas où l'utilisateur est null
       }
